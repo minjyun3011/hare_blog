@@ -11,8 +11,8 @@ class Post extends Model
     use HasFactory;
 
     protected $fillable = [
-            'title',
-            'body'
+        'title',
+        'body'
     ];
 
     public function user()
@@ -21,10 +21,14 @@ class Post extends Model
     }
     public function getImageUrlAttribute()
     {
-    return Storage::url('images/posts/' . $this->image);
+        return Storage::url('images/posts/' . $this->image);
+    }
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
     public function getImagePathAttribute()
     {
-    return 'images/posts/' . $this->image;
+        return 'images/posts/' . $this->image;
     }
 }
